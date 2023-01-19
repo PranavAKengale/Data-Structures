@@ -113,3 +113,39 @@ class BST:
         return currentNode.value
         
  -------------------------
+ # Min Height BST
+ class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        if value < self.value:
+            if self.left is None:
+                self.left = BST(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right = BST(value)
+            else:
+                self.right.insert(value)
+                
+def minHeightBst(array):
+    return constructBST(array,None,0,len(array)-1)
+
+def constructBST(array,bst,startIdx,endIdx):
+    if endIdx<startIdx:
+        return
+    middleIdx=(startIdx+endIdx) // 2
+    valueToAdd=array[middleIdx]
+    if bst is None:
+        bst=BST(valueToAdd)
+    else:
+        bst.insert(valueToAdd)
+    constructBST(array,bst,startIdx,middleIdx-1)
+    constructBST(array,bst,middleIdx+1,endIdx)
+    return bst
+    
+--------------------------------
