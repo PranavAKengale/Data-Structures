@@ -148,4 +148,47 @@ def constructBST(array,bst,startIdx,endIdx):
     constructBST(array,bst,middleIdx+1,endIdx)
     return bst
     
+ # 2nd Approach:
+ class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+def minHeight(array):
+    return constructNewBst(array,0,len(array)-1)
+
+def constructNewBst(array,startIdx,endIdx):
+    if endIdx<startIdx:
+        return
+    middleIdx=(startIdx+endIdx) //2
+    bst=BST(array[middleIdx])
+    bst.left=constructNewBst(array,startIdx,middleIdx-1)
+    bst.right=constructNewBst(array,middleIdx+1,endIdx)
+    return bst
 --------------------------------
+
+# Find kth largest element
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+    
+    @staticmethod
+    def kLargestElemet(tree,k):
+        if tree is None:
+            return None
+        array=[]
+        BST.kLargest(tree,array,k)
+        return array[len(array)-k]
+     
+    @staticmethod
+    def kLargest(tree,array,k):
+        if tree==None:
+            return
+        BST.kLargest(tree.left,array,k)
+        array.append(tree.value)
+        BST.kLargest(tree.right,array,k)
+        
+ ---------------------------------    
