@@ -6,4 +6,24 @@ def minimumWaitingTime(queries):
         queriesLeft=len(queries)-(idx+1)
         totalCount+= duration*queriesLeft
     return totalCount
------------------------------    
+-----------------------------   
+
+# Class Photos
+def classPhotos(redShirtHeights,blueShirtHeights):
+    redShirtHeights.sort(reverse=True)
+    blueShirtHeights.sort(reverse=True)
+    
+    secondRow="Red Shirt" if redShirtHeights[0]>blueShirtHeights[0] else "Blue Shirt"
+    
+    for i in range(len(redShirtHeights)):
+        redShirtStudent=redShirtHeights[i]
+        blueShirtStudent=blueShirtHeights[i]
+        
+        if secondRow=="Red Shirt":
+            if redShirtStudent<=blueShirtStudent:
+                return False
+        else:
+            if blueShirtStudent<=redShirtStudent:
+                return False
+    return True
+  ----------------------------
