@@ -27,3 +27,33 @@ def classPhotos(redShirtHeights,blueShirtHeights):
                 return False
     return True
   ----------------------------
+  
+  # Tandem Bicycle
+  def tandemBicycle(redShirtSpeeds,blueShirtSpeeds,fastest):
+    redShirtSpeeds.sort()
+    blueShirtSpeeds.sort()
+    
+    if fastest==True:
+        reverseTheString(redShirtSpeeds)
+    totalSpeed=0
+    
+    for idx in range(len(redShirtSpeeds)):
+        redShirt=redShirtSpeeds[idx]
+        blueShirt=blueShirtSpeeds[idx]
+        
+        totalSpeed+=max(redShirt,blueShirt)
+        
+    return totalSpeed
+
+def reverseTheString(array):
+    startIdx=0
+    endIdx=len(array)-1
+    
+    while startIdx<endIdx:
+        array[endIdx],array[startIdx]=array[startIdx],array[endIdx]
+        startIdx+=1
+        endIdx-=1
+    
+    return array
+ 
+---------------------------------------
