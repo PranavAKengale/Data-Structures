@@ -57,3 +57,31 @@ def reverseTheString(array):
     return array
  
 ---------------------------------------
+
+# Task Assignment
+ef taskAssignment(tasks,k):
+    pairedTasks=[]
+    idxDic=findIndexPosition(tasks)
+    sortedArray=sorted(tasks)
+    
+    for idx in range(k):
+        firstValue=sortedArray[idx]
+        idxFirstValue=idxDic[firstValue].pop()
+        
+        secondValue=sortedArray[len(sortedArray)-idx-1]
+        idxSecondValue=idxDic[secondValue].pop()
+        
+        pairedTasks.append([idxFirstValue,idxSecondValue])
+    return pairedTasks
+        
+    
+def findIndexPosition(tasks):
+    dic={}
+    for idx,value in enumerate(tasks):
+        if value in dic:
+            dic[value].append(idx)
+        else:
+            dic[value]=[idx]
+    return dic
+
+------------------------------------------------------
