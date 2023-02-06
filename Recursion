@@ -28,3 +28,33 @@ def nthfibonacci_number(n):
         num+=1
     return array[1] if n>1 else array[0]
 -------------------------------------------------------
+
+#Product Sum
+def productSum(array,m=1):
+    totalSum=0
+    for char in array:
+        if type(char) is list:
+            totalSum+=productSum(char,m+1)
+        else:
+            totalSum+=char
+    return totalSum*m           
+--------------------------------------------------------
+
+# Permutations
+def getpermutations(array):
+    permutations=[]
+    helperPermutations(0,array,permutations)
+    return permutations
+
+def helperPermutations(i,array,permutations):
+    if i==len(array)-1:
+        permutations.append(array[:])
+    else:
+        for j in range(i,len(array)):
+            swap(array,i,j)
+            helperPermutations(i+1,array,permutations)
+            swap(array,i,j)
+            
+def swap(array,i,j):
+    array[j],array[i]=array[i],array[j]
+-----------------------------------------------------------   
