@@ -58,3 +58,35 @@ def helperPermutations(i,array,permutations):
 def swap(array,i,j):
     array[j],array[i]=array[i],array[j]
 -----------------------------------------------------------   
+
+# Power Set
+def powerSet(array):
+    subset=[[]]
+    for ele in array:
+        for i in range(len(subset)):
+            currentSubset=subset[i]
+            subset.append(currentSubset+[ele])
+    return subset
+-------------------------------------------------------------
+
+# Phone Number Mnemonics
+def phoneNumberMnemonics(phoneNumber):
+    dic = {"0":"0","1":"1","2": "abc", "3": "def", "4": "ghi", "5": "jkl", 
+                   "6": "mno", "7": "pqrs", "8": "tuv", "9": "wxyz"}
+    currentNumber=['0'] * len(phoneNumber)
+    found=[]
+    helper(0,currentNumber,found,phoneNumber,dic)
+    return found
+
+def helper(idx,currentNumber,found,phoneNumber,dic):
+    if idx==len(phoneNumber):
+        mnuemonic="".join(currentNumber)
+        found.append(mnuemonic)
+    else:
+        digit=phoneNumber[idx]
+        letters=dic[digit]
+        
+        for letter in letters:
+            currentNumber[idx]=letter
+            helper(idx+1,currentNumber,found,phoneNumber,dic)
+-------------------------------------------------------------            
