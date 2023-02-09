@@ -89,4 +89,45 @@ def helper(idx,currentNumber,found,phoneNumber,dic):
         for letter in letters:
             currentNumber[idx]=letter
             helper(idx+1,currentNumber,found,phoneNumber,dic)
--------------------------------------------------------------            
+-------------------------------------------------------------  
+
+# Lowest Common Ancestor of Binary Tree
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if root is None:
+            return None
+        if root==p or root==q:
+            return root
+        
+        l=self.lowestCommonAncestor(root.left,p,q)
+        r=self.lowestCommonAncestor(root.right,p,q)
+
+        if l is not None and r is not None:
+            return root
+        else:
+            return l or r
+-----------------------------------------------------
+# Lowest Common Ancestor in BST
+class TreeNode:
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        currentNode=root
+        while currentNode is not None:
+            if p.val>currentNode.val and q.val>currentNode.val:
+                currentNode=currentNode.right
+            elif p.val<currentNode.val and q.val<currentNode.val:
+                currentNode=currentNode.left
+            else:
+                return currentNode
+---------------------------------------------------------------                
