@@ -172,3 +172,49 @@ def helper(one,two,three,i,j,cache):
     cache[i][j]=False
     return False 
 ---------------------------------------------------------
+# Soduku Solver
+def solveSudoku(board):
+    sudokuHelper(0,0,board)
+    return board
+
+def sudokuHelper(row,col,board):
+    currentRow=row
+    currentCol=col
+    if currentCol==len(board[currentRow]):
+        currentRow+=1
+        currentCol=0
+        if currentRow==len(board):
+            return True
+            
+            
+    if board[currentRow][currentCol]==0:
+        return tryDigit(currentRow,currentCol,board)
+    return sudokuHelper(currentRow,currentCol+1,board)
+
+    
+def tryDigit(row,col,board):
+    for digit in range(1,10):
+        if isValid(digit,row,col,board):
+            board[row][col]=digit
+            if sudokuHelper(row,col+1,board):
+                return True
+    board[row][col]=0
+    return False
+
+
+def isValid(value,row,col,board):
+    rowIsValid= value not in board[row]
+    colIsValid=value not in map(lambda r:r[col] , board)  
+    if not rowIsValid or not colIsValid:
+        return False
+    rowSubGrid=row//3
+    colSubGrid=col//3
+    for row in range(3):
+        for col in range(3):
+            rowToCheck=rowSubGrid*3+row
+            colToCheck=colSubGrid*3+col
+            valueToCheck=board[rowToCheck][colToCheck]
+            if value==valueToCheck:
+                return False
+    return True
+-------------------------------------------------------------    
